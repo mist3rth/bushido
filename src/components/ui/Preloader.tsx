@@ -3,8 +3,22 @@
 import { useEffect, useState } from "react";
 import gsap from "gsap";
 
+const phrases = [
+  "Aiguiser son esprit",
+  "Affûter son âme",
+  "Maîtriser ses émotions"
+];
+
 export default function Preloader({ progress }: { progress: number }) {
   const [isVisible, setIsVisible] = useState(true);
+  const [phraseIndex, setPhraseIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPhraseIndex((prev) => (prev + 1) % phrases.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (progress >= 100) {
@@ -33,9 +47,10 @@ export default function Preloader({ progress }: { progress: number }) {
         <span className="font-serif text-2xl font-light tracking-widest">{Math.round(progress)}%</span>
       </div>
       
-      <p className="font-serif text-sm tracking-[0.3em] uppercase text-zinc-500 animate-pulse">
-        Éveil de la lame
+      <p className="font-serif text-sm tracking-[0.3em] uppercase text-zinc-500 animate-pulse transition-all duration-500 ease-in-out text-center px-4 min-h-[1.5rem]">
+        {phrases[phraseIndex]}
       </p>
     </div>
   );
 }
+

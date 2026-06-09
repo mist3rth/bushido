@@ -164,12 +164,14 @@ export default function Home() {
 
       {/* Audio Element & Controls */}
       <audio ref={audioRef} src="/son.mp3" loop autoPlay muted={true} />
-      <button 
-        onClick={toggleMute}
-        className="fixed bottom-8 right-8 z-[150] w-12 h-12 flex items-center justify-center rounded-full bg-black/50 border border-white/10 text-white/80 hover:text-white hover:bg-black/80 backdrop-blur-md transition-all cursor-pointer hover:scale-110"
-      >
-        {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-      </button>
+      {loadProgress >= 100 && (
+        <button 
+          onClick={toggleMute}
+          className="fixed bottom-8 right-8 z-[150] w-12 h-12 flex items-center justify-center rounded-full bg-black/50 border border-white/10 text-white/80 hover:text-white hover:bg-black/80 backdrop-blur-md transition-all cursor-pointer hover:scale-110 animate-in fade-in duration-500"
+        >
+          {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+        </button>
+      )}
 
       {/* Scroll Indicator */}
       <div className={`fixed bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60 transition-opacity duration-500 z-[150] pointer-events-none ${globalFrame > 20 ? 'opacity-0' : 'opacity-100 animate-bounce'}`}>
