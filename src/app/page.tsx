@@ -210,12 +210,12 @@ export default function Home() {
             <CanvasSequence
               onLoadProgress={setLoadProgress}
               sequences={[
-                { frameCount: 300, imagePathPrefix: "/frames/frame_", imagePathSuffix: ".jpg" },
-                { frameCount: 300, imagePathPrefix: "/frames_armure/frame_", imagePathSuffix: ".jpg" },
-                { frameCount: 300, imagePathPrefix: "/frames_esprit/frame_", imagePathSuffix: ".jpg" },
-                { frameCount: 300, imagePathPrefix: "/frames_lame/frame_", imagePathSuffix: ".jpg" },
-                { frameCount: 300, imagePathPrefix: "/frames_dark/frame_", imagePathSuffix: ".jpg" },
-                { frameCount: 300, imagePathPrefix: "/frames_end/frame_", imagePathSuffix: ".jpg" }
+                { frameCount: 300, imagePathPrefix: "/frames/frame_", imagePathSuffix: ".webp" },
+                { frameCount: 300, imagePathPrefix: "/frames_armure/frame_", imagePathSuffix: ".webp" },
+                { frameCount: 300, imagePathPrefix: "/frames_esprit/frame_", imagePathSuffix: ".webp" },
+                { frameCount: 300, imagePathPrefix: "/frames_lame/frame_", imagePathSuffix: ".webp" },
+                { frameCount: 300, imagePathPrefix: "/frames_dark/frame_", imagePathSuffix: ".webp" },
+                { frameCount: 300, imagePathPrefix: "/frames_end/frame_", imagePathSuffix: ".webp" }
               ]}
             />
           </div>
