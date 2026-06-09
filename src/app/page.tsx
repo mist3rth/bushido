@@ -6,10 +6,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CanvasSequence from "@/components/CanvasSequence";
 import Preloader from "@/components/ui/Preloader";
 import { Plus, X, Volume2, VolumeX, Mouse, Swords } from "lucide-react";
+import { useLenis } from "@studio-freight/react-lenis";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  const lenis = useLenis();
   const [loadProgress, setLoadProgress] = useState(0);
   const [tooltip, setTooltip] = useState<string | null>(null);
   const [globalFrame, setGlobalFrame] = useState(0);
@@ -421,7 +423,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-gray-400">
           <div>
             <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              onClick={() => lenis?.scrollTo(0)}
               className="flex items-center gap-3 cursor-pointer group bg-transparent border-none p-0 outline-none mb-6"
             >
               <div className="text-[var(--color-primary)] transition-transform duration-500 group-hover:rotate-45">
@@ -439,19 +441,19 @@ export default function Home() {
           <div>
             <h4 className="font-sans text-sm font-semibold text-gray-200 tracking-widest uppercase mb-6">Chapitres</h4>
             <ul className="space-y-4 font-sans text-sm">
-              <li><button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth'})} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer">La Voie</button></li>
-              <li><button onClick={() => window.scrollTo({ top: 3*window.innerHeight, behavior: 'smooth'})} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer">L'Armure</button></li>
-              <li><button onClick={() => window.scrollTo({ top: 6*window.innerHeight, behavior: 'smooth'})} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer">L'Esprit</button></li>
-              <li><button onClick={() => window.scrollTo({ top: 9*window.innerHeight, behavior: 'smooth'})} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer">La Lame</button></li>
-              <li><button onClick={() => window.scrollTo({ top: 12*window.innerHeight, behavior: 'smooth'})} className="hover:text-red-500 transition-colors cursor-pointer">Darkside</button></li>
+              <li><button onClick={() => lenis?.scrollTo(0)} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer">La Voie</button></li>
+              <li><button onClick={() => lenis?.scrollTo(3 * window.innerHeight)} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer">L'Armure</button></li>
+              <li><button onClick={() => lenis?.scrollTo(6 * window.innerHeight)} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer">L'Esprit</button></li>
+              <li><button onClick={() => lenis?.scrollTo(9 * window.innerHeight)} className="hover:text-[var(--color-primary)] transition-colors cursor-pointer">La Lame</button></li>
+              <li><button onClick={() => lenis?.scrollTo(12 * window.innerHeight)} className="hover:text-red-500 transition-colors cursor-pointer">Darkside</button></li>
             </ul>
           </div>
           <div>
             <h4 className="font-sans text-sm font-semibold text-gray-200 tracking-widest uppercase mb-6">Social</h4>
             <ul className="space-y-4 font-sans text-sm">
               <li><a href="https://mist3rth.github.io/presentMe/" target="_blank" rel="noopener noreferrer" className="hover:text-red-500 transition-colors flex items-center gap-2 font-bold text-white">Mon Site / Portfolio</a></li>
-              <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#0a66c2] transition-colors flex items-center gap-2">LinkedIn</a></li>
-              <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#1877f2] transition-colors flex items-center gap-2">Facebook</a></li>
+              <li><a href="https://www.linkedin.com/in/thierry-thiesson-7887501" target="_blank" rel="noopener noreferrer" className="hover:text-[#0a66c2] transition-colors flex items-center gap-2">LinkedIn</a></li>
+              <li><a href="https://www.facebook.com/thiesson.thierry.1?locale=fr_FR" target="_blank" rel="noopener noreferrer" className="hover:text-[#1877f2] transition-colors flex items-center gap-2">Facebook</a></li>
             </ul>
           </div>
         </div>
