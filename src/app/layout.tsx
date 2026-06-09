@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/ui/Navbar";
 import LenisProvider from "@/components/LenisProvider";
-import AudioPlayer from "@/components/ui/AudioPlayer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -54,7 +53,6 @@ export default function RootLayout({
         <LenisProvider>
           <Navbar />
           {children}
-          <AudioPlayer />
         </LenisProvider>
       </body>
     </html>
