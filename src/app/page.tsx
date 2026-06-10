@@ -147,6 +147,37 @@ export default function Home() {
 
   }, []);
 
+  useEffect(() => {
+    if (loadProgress >= 100 && audioRef.current) {
+      const startAudio = () => {
+        if (audioRef.current) {
+          audioRef.current.muted = false;
+          setIsMuted(false);
+          audioRef.current.play().catch(err => console.log("Playback failed after interaction", err));
+        }
+      };
+
+      // Try playing immediately
+      audioRef.current.muted = false;
+      setIsMuted(false);
+      audioRef.current.play().catch(e => {
+        console.log("Autoplay blocked, waiting for user interaction to play audio.", e);
+        // Fallback: play on first interaction
+        const playOnInteraction = () => {
+          startAudio();
+          window.removeEventListener("click", playOnInteraction);
+          window.removeEventListener("scroll", playOnInteraction);
+          window.removeEventListener("touchstart", playOnInteraction);
+          window.removeEventListener("keydown", playOnInteraction);
+        };
+        window.addEventListener("click", playOnInteraction, { passive: true });
+        window.addEventListener("scroll", playOnInteraction, { passive: true });
+        window.addEventListener("touchstart", playOnInteraction, { passive: true });
+        window.addEventListener("keydown", playOnInteraction, { passive: true });
+      });
+    }
+  }, [loadProgress]);
+
   return (
     <main className="relative w-full">
       <Preloader progress={loadProgress} />
@@ -163,7 +194,7 @@ export default function Home() {
       <div className="fixed inset-0 pointer-events-none z-[100] bg-[radial-gradient(circle,transparent_50%,rgba(0,0,0,0.8)_150%)]" />
 
       {/* Audio Element & Controls */}
-      <audio ref={audioRef} src="/son.mp3" loop autoPlay muted={true} />
+      <audio ref={audioRef} src="/son.mp3" loop muted={isMuted} />
       {loadProgress >= 100 && (
         <button 
           onClick={toggleMute}
